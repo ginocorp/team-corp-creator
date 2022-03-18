@@ -1,0 +1,31 @@
+body{
+  background: #f6f6f2;
+  color: #388087;
+  font-family: sans-serif;
+}
+
+.jumbotron{
+  background: #badfe7;
+}
+
+.card{
+  padding-top: 10px;
+  background:#badfe7;
+  margin-bottom: -20px;
+}
+
+.container {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 350px);
+  grid-template-rows: repeat(2, 300px);
+  grid-gap: 30px 20px;
+}
+
+.card-header{
+  background:#badfe7; 
+}
+
+.list-group-item {
+  font-family: sans-serif;
+}
