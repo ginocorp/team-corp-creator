@@ -2,15 +2,13 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const render = require("./lib/render");
-const Questions = require("./questions");
+const Render = require("./lib/renderHTML");
+const Questions = require("./gen_questions");
 
-// External Packages
+// Packages Needed
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-const { inherits } = require("util");
-const { start } = require("repl");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -19,40 +17,40 @@ var employees = [];
 const q = new Questions
 
 
-// start of application
+//application start; type npm start in terminal
 async function init() {
-    try {
-        const startApp = await q.startQuestion();
-        if(startApp.startGame)
-            var keepRunning = true
-            while (keepRunning) {
-                var empRole = await q.employeeRole();
-                const empData = await q.employeeQuestions();
-                switch(empRole.listEmp) {
-                    case 'Manager':
-                        var roleData = await q.managerQuestions();
-                        newEmployee = new Manager(empData.empName, empData.empId, empData.empEmail, roleData.mgrOffice);
-                    break;
-                    case 'Engineer':
-                        var roleData = await q.engineerQuestions();
-                        newEmployee = new Engineer(empData.empName, empData.empId, empData.empEmail, roleData.github);
-                    break;
-                    case 'Intern':
-                        var roleData = await q.internQuestions();
-                        newEmployee = new Intern(empData.empName, empData.empId, empData.empEmail, roleData.schoolName);
-                    break;
-                }
-                employees.push(newEmployee)
-                console.log(employees);
-                var status = await q.confirmEmployee();
-                keepRunning = status.confirmEmp
-            }
-        } catch (error) {
-    console.log(error);
+  try {
+    const startApp = await q.startQuestion();
+      if(startApp.startGame)
+        var keepRunning = true
+        while (keepRunning) {
+          var empRole = await q.employeeRole();
+          const empData = await q.employeeQuestions();
+          switch(empRole.listEmp) {
+            case 'Manager':
+              var roleData = await q.managerQuestions();
+              newEmployee = new Manager(empData.empName, empData.empId, empData.empEmail, roleData.mgrOffice);
+            break;
+            case 'Engineer':
+              var roleData = await q.engineerQuestions();
+              newEmployee = new Engineer(empData.empName, empData.empId, empData.empEmail, roleData.github);
+            break;
+            case 'Intern':
+              var roleData = await q.internQuestions();
+              newEmployee = new Intern(empData.empName, empData.empId, empData.empEmail, roleData.schoolName);
+            break;
+          }
+          employees.push(newEmployee)
+          console.log(employees);
+          var status = await q.confirmEmployee();
+          keepRunning = status.confirmEmp
+        }
+    } catch (error) {
+        console.log(error);
     };
-// gets all inputs and renders the HTML
+// inputs gathered and renders to the HTML in output folder
     try {
-        let renderedHTML = render(employees);
+        let renderedHTML = Render(employees);
         fs.writeFileSync(outputPath, renderedHTML);
         console.log('Finished! Check out your HTML page in the output folder.')
     } catch (error) {

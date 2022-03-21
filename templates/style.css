@@ -8,6 +8,10 @@ body{
   background: #badfe7;
 }
 
+h1 {
+  font-size: 70px;
+}
+
 .card{
   padding-top: 10px;
   background:#badfe7;
