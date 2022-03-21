@@ -38,7 +38,7 @@
 * Inquirer Package
 * Variables Created
 * Console logging
-* test.js
+* Jest Package
 * Files Systems
 * Template Literals
 
