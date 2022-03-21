@@ -32,7 +32,7 @@
 ![](Assets/images/Generated_Team.png)
 
 * video link:
-![Team Roster Generator Video](https://drive.google.com/file/d/139-S6hCA6SM8xQc3n520vkMv989hYrhy/view)
+[Team Roster Generator Video](https://drive.google.com/file/d/139-S6hCA6SM8xQc3n520vkMv989hYrhy/view)
 
 * Node.js
 * Inquirer Package
